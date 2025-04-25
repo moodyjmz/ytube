@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Youtube Test</title>
+</head>
+<body>
+    <a class="video-upgrade" href="https://www.youtube.com/embed/31eKTAfCWWE?si=G71mVWSNIZbL85O1&autoplay=1"> 
+        <img src="./mel.webp" />
+    </a>
+    <script>
+        const YT_CLASS = 'video-upgrade';
+        const upgrades = [...document.querySelectorAll(`.${YT_CLASS}`)];
+        const handleYoutube = (el) => {
+            el.addEventListener('click', (event) => {
+                event.preventDefault();
+                updateYoutube(el);
+            })
+        }
+        const updateYoutube = (el) => {
+            const youTubeIframe = document.createElement('iframe');
+            youTubeIframe.src = el.href;
+            youTubeIframe.height = "168";
+            youTubeIframe.width = "300";
+            youTubeIframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            youTubeIframe.frameborder = "0";
+            youTubeIframe.allowFullscreen = true;
+            el.replaceWith(youTubeIframe);
+        }
+        upgrades.forEach(handleYoutube);
+    </script>
+</body>
+</html>
