@@ -5,18 +5,27 @@
     <title>Youtube Test</title>
 </head>
 <body>
+    <!-- Represents the modified image, what is important is the class, and href -->
     <a class="video-upgrade" href="https://www.youtube.com/embed/31eKTAfCWWE?si=G71mVWSNIZbL85O1&autoplay=1"> 
         <img src="./mel.webp" />
     </a>
+    <!-- this does the replacing, this would be added into the page as a script, or custom html -->
     <script>
+        // We reference the class name
         const YT_CLASS = 'video-upgrade';
+        // We find all the elements using that class name
         const upgrades = [...document.querySelectorAll(`.${YT_CLASS}`)];
+        // Add a click handler
+        // This stops the normal link click
+        // It calls the updateYoutube function
         const handleYoutube = (el) => {
             el.addEventListener('click', (event) => {
                 event.preventDefault();
                 updateYoutube(el);
             })
         }
+        // This replaces an element with a youtube iframe
+        // It expects the element to have an href
         const updateYoutube = (el) => {
             const youTubeIframe = document.createElement('iframe');
             youTubeIframe.src = el.href;
@@ -27,6 +36,7 @@
             youTubeIframe.allowFullscreen = true;
             el.replaceWith(youTubeIframe);
         }
+        // Go through all youtube elements on the page and add the click handler
         upgrades.forEach(handleYoutube);
     </script>
 </body>
